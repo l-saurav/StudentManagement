@@ -2,7 +2,37 @@
   {
     "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
     "Method": "GetAllStudentWithCourses",
-    "RelativePath": "api/Additional/Get",
+    "RelativePath": "api/Additional/EnrolledStudent",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetAllFailedStudent",
+    "RelativePath": "api/Additional/FailedStudent",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetAllUnenrolledCourse",
+    "RelativePath": "api/Additional/UnenrolledCourse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetAllUnenrolledStudent",
+    "RelativePath": "api/Additional/UnenrolledStudent",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

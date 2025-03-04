@@ -5,7 +5,43 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Additional/Get": {
+    "/api/Additional/EnrolledStudent": {
+      "get": {
+        "tags": [
+          "Additional"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Additional/UnenrolledStudent": {
+      "get": {
+        "tags": [
+          "Additional"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Additional/UnenrolledCourse": {
+      "get": {
+        "tags": [
+          "Additional"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Additional/FailedStudent": {
       "get": {
         "tags": [
           "Additional"

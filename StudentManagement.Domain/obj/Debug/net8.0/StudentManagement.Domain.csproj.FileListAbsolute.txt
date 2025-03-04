@@ -9,3 +9,4 @@ C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\refint\StudentManagement.Domain.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.pdb
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\ref\StudentManagement.Domain.dll
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.sourcelink.json
