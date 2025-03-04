@@ -1,0 +1,374 @@
+[
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "CalculateStudentGPA",
+    "RelativePath": "api/Additional/calculate-gpa/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetCoursesWithoutEnrollments",
+    "RelativePath": "api/Additional/courses-without-enrollment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetStudentsWithCourses",
+    "RelativePath": "api/Additional/students-with-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetStudentsWithFailedCourses",
+    "RelativePath": "api/Additional/students-with-failed-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "GetStudentsWithoutEnrollments",
+    "RelativePath": "api/Additional/students-without-enrollment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.CoursesController",
+    "Method": "AddCourseAsync",
+    "RelativePath": "api/Courses",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseDTO",
+        "Type": "StudentManagement.Application.DTOs.CourseCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.CoursesController",
+    "Method": "GetAllCoursesAsync",
+    "RelativePath": "api/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.CoursesController",
+    "Method": "GetCourseByIdAsync",
+    "RelativePath": "api/Courses/{courseID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.CoursesController",
+    "Method": "UpdateCourseAsync",
+    "RelativePath": "api/Courses/{courseID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "courseDTO",
+        "Type": "StudentManagement.Application.DTOs.CourseUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.CoursesController",
+    "Method": "DeleteCourseAsync",
+    "RelativePath": "api/Courses/{courseID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.EnrollmentsController",
+    "Method": "AddEnrollmentAsync",
+    "RelativePath": "api/Enrollments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentDTO",
+        "Type": "StudentManagement.Application.DTOs.EnrollmentCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.EnrollmentsController",
+    "Method": "GetAllEnrollmentsAsync",
+    "RelativePath": "api/Enrollments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.EnrollmentsController",
+    "Method": "GetEnrollmentByIdAsync",
+    "RelativePath": "api/Enrollments/{enrollmentID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.EnrollmentsController",
+    "Method": "UpdateEnrollmentAsync",
+    "RelativePath": "api/Enrollments/{enrollmentID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "enrollmentDTO",
+        "Type": "StudentManagement.Application.DTOs.EnrollmentUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.EnrollmentsController",
+    "Method": "DeleteEnrollmentAsync",
+    "RelativePath": "api/Enrollments/{enrollmentID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.GradesController",
+    "Method": "AddGradeAsync",
+    "RelativePath": "api/Grades",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gradeDTO",
+        "Type": "StudentManagement.Application.DTOs.GradeCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.GradesController",
+    "Method": "GetAllGradesAsync",
+    "RelativePath": "api/Grades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.GradesController",
+    "Method": "GetGradeByIdAsync",
+    "RelativePath": "api/Grades/{gradeID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gradeID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.GradesController",
+    "Method": "UpdateGradeAsync",
+    "RelativePath": "api/Grades/{gradeID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gradeID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "gradeDTO",
+        "Type": "StudentManagement.Application.DTOs.GradeUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.GradesController",
+    "Method": "DeleteGradeAsync",
+    "RelativePath": "api/Grades/{gradeID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gradeID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.StudentsController",
+    "Method": "AddStudentAsync",
+    "RelativePath": "api/Students",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentDTO",
+        "Type": "StudentManagement.Application.DTOs.StudentCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.StudentsController",
+    "Method": "GetAllStudentsAsync",
+    "RelativePath": "api/Students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.StudentsController",
+    "Method": "GetStudentByIdAsync",
+    "RelativePath": "api/Students/{studentID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.StudentsController",
+    "Method": "UpdateStudentAsync",
+    "RelativePath": "api/Students/{studentID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "studentDTO",
+        "Type": "StudentManagement.Application.DTOs.StudentUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.StudentsController",
+    "Method": "DeleteStudentAsync",
+    "RelativePath": "api/Students/{studentID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

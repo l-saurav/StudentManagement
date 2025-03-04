@@ -1,0 +1,4 @@
+# Auto detect text files and perform LF normalization
+
+*.jpg binary
+*.png binary

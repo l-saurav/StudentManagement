@@ -1,0 +1,11 @@
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\bin\Debug\net8.0\StudentManagement.Domain.deps.json
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\bin\Debug\net8.0\StudentManagement.Domain.dll
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\bin\Debug\net8.0\StudentManagement.Domain.pdb
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.AssemblyInfo.cs
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.dll
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\refint\StudentManagement.Domain.dll
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\StudentManagement.Domain.pdb
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Domain\obj\Debug\net8.0\ref\StudentManagement.Domain.dll
