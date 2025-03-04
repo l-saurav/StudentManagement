@@ -10,11 +10,16 @@ using System.Threading.Tasks;
 namespace StudentManagement.Application.Queries
 {
     public record GetStudentByIdQuery(int StudentID) : IRequest<StudentEntity>;
-    public class GetStudentByIdQueryHandler(IStudentRepository studentRepository) : IRequestHandler<GetStudentByIdQuery, StudentEntity>
+    public class GetStudentByIdQueryHandler : IRequestHandler<GetStudentByIdQuery, StudentEntity>
     {
+        private readonly IStudentRepository _studentRepository;
+        public GetStudentByIdQueryHandler(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
         public async Task<StudentEntity> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
         {
-            return await studentRepository.GetStudentByIdAsync(request.StudentID);
+            return await _studentRepository.GetStudentByIdAsync(request.StudentID);
         }
     }
 }

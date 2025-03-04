@@ -6,16 +6,21 @@ using StudentManagement.Domain.Interfaces;
 namespace StudentManagement.Application.Commands
 {
     public record UpdateStudentCommand(int StudentID, StudentEntity student): IRequest<StudentReadDTO>;
-    public class UpdateStudentCommandHandler(IStudentRepository studentRepository) : IRequestHandler<UpdateStudentCommand, StudentReadDTO>
+    public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, StudentReadDTO>
     {
+        private readonly IStudentRepository _studentRepository;
+        public UpdateStudentCommandHandler(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
         public async Task<StudentReadDTO> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            var existingStudent = await studentRepository.GetStudentByIdAsync(request.StudentID);
+            var existingStudent = await _studentRepository.GetStudentByIdAsync(request.StudentID);
             if(existingStudent is null)
             {
                 return null;
             }
-            var updatedStudent = await studentRepository.UpdateStudentAsync(request.StudentID, request.student);
+            var updatedStudent = await _studentRepository.UpdateStudentAsync(request.StudentID, request.student);
             return new StudentReadDTO
             {
                 StudentID = updatedStudent.StudentID,

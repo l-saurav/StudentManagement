@@ -12,15 +12,27 @@ namespace StudentManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController(ISender sender,IMapper mapper, IValidator<AddStudentCommand> addValidator,IValidator<UpdateStudentCommand> updValidator) : ControllerBase
+    public class StudentsController : ControllerBase
     {
-        [HttpPost("")]
+        private readonly ISender _sender;
+        private readonly IMapper _mapper;
+        private readonly IValidator<AddStudentCommand> _addValidator;
+        private readonly IValidator<UpdateStudentCommand> _updValidator;
+        public StudentsController(ISender sender, IMapper mapper, IValidator<AddStudentCommand> addValidator, IValidator<UpdateStudentCommand> updValidator)
+        {
+            _sender = sender;
+            _mapper = mapper;
+            _addValidator = addValidator;
+            _updValidator = updValidator;
+        }
+        [HttpPost]
+        [Route("")]
         public async Task<IActionResult> AddStudentAsync([FromBody] StudentCreateDTO studentDTO)
         {
-            var studentEntity = mapper.Map<StudentEntity>(studentDTO);
+            var studentEntity = _mapper.Map<StudentEntity>(studentDTO);
 
             // **Validate before hitting database**
-            var validationResult = await addValidator.ValidateAsync(new AddStudentCommand(studentEntity));
+            var validationResult = await _addValidator.ValidateAsync(new AddStudentCommand(studentEntity));
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -30,37 +42,40 @@ namespace StudentManagement.API.Controllers
             }
             // **End of validation**
 
-            var result = await sender.Send(new AddStudentCommand(studentEntity));
+            var result = await _sender.Send(new AddStudentCommand(studentEntity));
             return Ok(result);
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [Route("")]
         public async Task<IActionResult> GetAllStudentsAsync()
         {
-            var result = await sender.Send(new GetAllStudentsQuery());
-            var studentDTO = mapper.Map<IEnumerable<StudentReadDTO>>(result);
+            var result = await _sender.Send(new GetAllStudentsQuery());
+            var studentDTO = _mapper.Map<IEnumerable<StudentReadDTO>>(result);
             return Ok(studentDTO);
         }
 
-        [HttpGet("{studentID}")]
+        [HttpGet]
+        [Route("{studentID}")]
         public async Task<IActionResult> GetStudentByIdAsync([FromRoute] int studentID)
         {
-            var result = await sender.Send(new GetStudentByIdQuery(studentID));
+            var result = await _sender.Send(new GetStudentByIdQuery(studentID));
             if(result is null)
             {
                 return NotFound();
             }
-            var studentDTO = mapper.Map<StudentReadDTO>(result);
+            var studentDTO = _mapper.Map<StudentReadDTO>(result);
             return Ok(studentDTO);
         }
 
-        [HttpPut("{studentID}")]
+        [HttpPut]
+        [Route("{studentID}")]
         public async Task<IActionResult> UpdateStudentAsync([FromRoute] int studentID, [FromBody] StudentUpdateDTO studentDTO)
         {
-            var studentEntity = mapper.Map<StudentEntity>(studentDTO);
+            var studentEntity = _mapper.Map<StudentEntity>(studentDTO);
             studentEntity.StudentID = studentID;
             // **Validate before hitting database**
-            var validationResult = await updValidator.ValidateAsync(new UpdateStudentCommand(studentID,studentEntity));
+            var validationResult = await _updValidator.ValidateAsync(new UpdateStudentCommand(studentID,studentEntity));
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -69,7 +84,7 @@ namespace StudentManagement.API.Controllers
                 return BadRequest(new { Errors = errors });
             }
             // **End of validation**
-            var result = await sender.Send(new UpdateStudentCommand(studentID, studentEntity));
+            var result = await _sender.Send(new UpdateStudentCommand(studentID, studentEntity));
             if (result is null)
             {
                 return NotFound();
@@ -77,10 +92,11 @@ namespace StudentManagement.API.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{studentID}")]
+        [HttpDelete]
+        [Route("{studentID}")]
         public async Task<IActionResult> DeleteStudentAsync([FromRoute] int studentID)
         {
-            var result = await sender.Send(new DeleteStudentCommand(studentID));
+            var result = await _sender.Send(new DeleteStudentCommand(studentID));
             if (result)
             {
                 return Ok(result);

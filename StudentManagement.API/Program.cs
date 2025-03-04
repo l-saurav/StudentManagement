@@ -6,6 +6,21 @@ using StudentManagement.Application.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Allowing react to interact with backend API
+var corsPolicy = "AllowReactApp";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(corsPolicy, policy =>
+    {
+        policy
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin();
+    });
+});
+//
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -28,6 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//Enable CORS globally
+app.UseCors(corsPolicy);
 
 app.UseSerilogRequestLogging();
 app.MapControllers();

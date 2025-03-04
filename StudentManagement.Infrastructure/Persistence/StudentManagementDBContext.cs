@@ -8,6 +8,7 @@ namespace StudentManagement.Infrastructure.Persistence
     {
         public StudentManagementDBContext(DbContextOptions<StudentManagementDBContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<StudentEntity> Students { get; set; }

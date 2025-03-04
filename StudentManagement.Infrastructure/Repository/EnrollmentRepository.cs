@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using StudentManagement.Domain.Entities;
 using StudentManagement.Domain.Interfaces;
 using StudentManagement.Infrastructure.Persistence;

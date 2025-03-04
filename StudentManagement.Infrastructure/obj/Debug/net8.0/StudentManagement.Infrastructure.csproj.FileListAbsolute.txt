@@ -15,3 +15,4 @@ C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Infrastructure\bi
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Infrastructure\bin\Debug\net8.0\StudentManagement.Domain.pdb
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Infrastructure\obj\Debug\net8.0\StudentM.54534901.Up2Date
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Infrastructure\obj\Debug\net8.0\StudentManagement.Infrastructure.genruntimeconfig.cache
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Infrastructure\obj\Debug\net8.0\StudentManagement.Infrastructure.sourcelink.json

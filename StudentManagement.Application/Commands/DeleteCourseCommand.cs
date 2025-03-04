@@ -5,11 +5,16 @@ using StudentManagement.Domain.Interfaces;
 namespace StudentManagement.Application.Commands
 {
     public record DeleteCourseCommand(int CourseId) : IRequest<bool>;
-    public class DeleteCourseCommandHandler(ICourseRepository courseRepository) : IRequestHandler<DeleteCourseCommand, bool>
+    public class DeleteCourseCommandHandler : IRequestHandler<DeleteCourseCommand, bool>
     {
+        private readonly ICourseRepository _courseRepository;
+        public DeleteCourseCommandHandler(ICourseRepository courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
         public async Task<bool> Handle(DeleteCourseCommand request, CancellationToken cancellationToken)
         {
-            return await courseRepository.DeleteCourseAsync(request.CourseId);
+            return await _courseRepository.DeleteCourseAsync(request.CourseId);
         }
     }
 }

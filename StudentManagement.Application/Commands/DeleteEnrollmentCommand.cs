@@ -4,11 +4,16 @@ using StudentManagement.Domain.Interfaces;
 namespace StudentManagement.Application.Commands
 {
     public record DeleteEnrollmentCommand(int EnrollmentID) : IRequest<bool>;
-    public class DeleteEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository) : IRequestHandler<DeleteEnrollmentCommand, bool>
+    public class DeleteEnrollmentCommandHandler : IRequestHandler<DeleteEnrollmentCommand, bool>
     {
+        private readonly IEnrollmentRepository _enrollmentRepository;
+        public DeleteEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository)
+        {
+            _enrollmentRepository = enrollmentRepository;
+        }
         public async Task<bool> Handle(DeleteEnrollmentCommand request, CancellationToken cancellationToken)
         {
-            return await enrollmentRepository.DeleteEnrollmentAsync(request.EnrollmentID);
+            return await _enrollmentRepository.DeleteEnrollmentAsync(request.EnrollmentID);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentManagement.Application.Commands;
 using StudentManagement.Application.DTOs;
@@ -12,14 +11,26 @@ namespace StudentManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GradesController(ISender sender, IMapper mapper,IValidator<AddGradeCommand> addValidator, IValidator<UpdateGradeCommand> updValidator) : ControllerBase
+    public class GradesController : ControllerBase
     {
-        [HttpPost("")]
+        private readonly ISender _sender;
+        private readonly IMapper _mapper;
+        private readonly IValidator<AddGradeCommand> _addValidator;
+        private readonly IValidator<UpdateGradeCommand> _updValidator;
+        public GradesController(ISender sender, IMapper mapper, IValidator<AddGradeCommand> addValidator, IValidator<UpdateGradeCommand> updValidator)
+        {
+            _sender = sender;
+            _mapper = mapper;
+            _addValidator = addValidator;
+            _updValidator = updValidator;
+        }
+        [HttpPost]
+        [Route("")]
         public async Task<IActionResult> AddGradeAsync([FromBody] GradeCreateDTO gradeDTO)
         {
-            var gradeEntity = mapper.Map<GradeEntity>(gradeDTO);
+            var gradeEntity = _mapper.Map<GradeEntity>(gradeDTO);
             // **Validate before hitting database**
-            var validationResult = await addValidator.ValidateAsync(new AddGradeCommand(gradeEntity));
+            var validationResult = await _addValidator.ValidateAsync(new AddGradeCommand(gradeEntity));
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -28,34 +39,37 @@ namespace StudentManagement.API.Controllers
                 return BadRequest(new { Errors = errors });
             }
             // **End of validation**
-            var result = await sender.Send(new AddGradeCommand(gradeEntity));
+            var result = await _sender.Send(new AddGradeCommand(gradeEntity));
             return Ok(result);
         }
-        [HttpGet("")]
+        [HttpGet]
+        [Route("")]
         public async Task<IActionResult> GetAllGradesAsync()
         {
-            var result = await sender.Send(new GetAllGradesQuery());
-            var gradeDTO = mapper.Map<IEnumerable<GradeReadDTO>>(result);
+            var result = await _sender.Send(new GetAllGradesQuery());
+            var gradeDTO = _mapper.Map<IEnumerable<GradeReadDTO>>(result);
             return Ok(gradeDTO);
         }
-        [HttpGet("{gradeID}")]
+        [HttpGet]
+        [Route("{gradeID}")]
         public async Task<IActionResult> GetGradeByIdAsync([FromRoute] int gradeID)
         {
-            var result = await sender.Send(new GetGradeByIdQuery(gradeID));
+            var result = await _sender.Send(new GetGradeByIdQuery(gradeID));
             if (result is null)
             {
                 return NotFound();
             }
-            var gradeDTO = mapper.Map<GradeReadDTO>(result);
+            var gradeDTO = _mapper.Map<GradeReadDTO>(result);
             return Ok(gradeDTO);
         }
-        [HttpPut("{gradeID}")]
+        [HttpPut]
+        [Route("{gradeID}")]
         public async Task<IActionResult> UpdateGradeAsync([FromRoute] int gradeID, [FromBody] GradeUpdateDTO gradeDTO)
         {
-            var gradeEntity = mapper.Map<GradeEntity>(gradeDTO);
+            var gradeEntity = _mapper.Map<GradeEntity>(gradeDTO);
             gradeEntity.GradeID = gradeID;
             // **Validate before hitting database**
-            var validationResult = await updValidator.ValidateAsync(new UpdateGradeCommand(gradeID, gradeEntity));
+            var validationResult = await _updValidator.ValidateAsync(new UpdateGradeCommand(gradeID, gradeEntity));
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors
@@ -64,17 +78,19 @@ namespace StudentManagement.API.Controllers
                 return BadRequest(new { Errors = errors });
             }
             // **End of validation**
-            var result = await sender.Send(new UpdateGradeCommand(gradeID, gradeEntity));
+            var result = await _sender.Send(new UpdateGradeCommand(gradeID, gradeEntity));
             if (result is null)
             {
                 return NotFound();
             }
             return Ok(result);
         }
-        [HttpDelete("{gradeID}")]
+
+        [HttpDelete]
+        [Route("{gradeID}")]
         public async Task<IActionResult> DeleteGradeAsync([FromRoute] int gradeID)
         {
-            var result = await sender.Send(new DeleteGradeCommand(gradeID));
+            var result = await _sender.Send(new DeleteGradeCommand(gradeID));
             if (result)
             {
                 return Ok();

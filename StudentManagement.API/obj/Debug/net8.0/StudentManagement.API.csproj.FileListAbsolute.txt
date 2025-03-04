@@ -196,3 +196,4 @@ C:\Users\Acer\source\repos\StudentManagement\StudentManagement.API\bin\Debug\net
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.API\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.API\obj\Debug\net8.0\StudentManagement.API.sourcelink.json

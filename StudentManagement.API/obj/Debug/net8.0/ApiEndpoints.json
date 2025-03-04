@@ -1,54 +1,8 @@
 [
   {
     "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
-    "Method": "CalculateStudentGPA",
-    "RelativePath": "api/Additional/calculate-gpa/{studentId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "studentId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
-    "Method": "GetCoursesWithoutEnrollments",
-    "RelativePath": "api/Additional/courses-without-enrollment",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
-    "Method": "GetStudentsWithCourses",
-    "RelativePath": "api/Additional/students-with-courses",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
-    "Method": "GetStudentsWithFailedCourses",
-    "RelativePath": "api/Additional/students-with-failed-courses",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
-    "Method": "GetStudentsWithoutEnrollments",
-    "RelativePath": "api/Additional/students-without-enrollment",
+    "Method": "GetAllStudentWithCourses",
+    "RelativePath": "api/Additional/Get",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

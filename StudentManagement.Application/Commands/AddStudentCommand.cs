@@ -7,11 +7,16 @@ namespace StudentManagement.Application.Commands
 {
     public record AddStudentCommand(StudentEntity Student) : IRequest<StudentReadDTO>;
 
-    public class AddStudentCommandHandler(IStudentRepository studentRepository) : IRequestHandler<AddStudentCommand, StudentReadDTO>
+    public class AddStudentCommandHandler : IRequestHandler<AddStudentCommand, StudentReadDTO>
     {
+        private readonly IStudentRepository _studentRepository;
+        public AddStudentCommandHandler(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
         public async Task<StudentReadDTO> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
-            var studentToAdd = await studentRepository.AddStudentAsync(request.Student);
+            var studentToAdd = await _studentRepository.AddStudentAsync(request.Student);
             return new StudentReadDTO
             {
                 StudentID = studentToAdd.StudentID,

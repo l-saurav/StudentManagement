@@ -6,11 +6,16 @@ namespace StudentManagement.Application.Queries
 {
     public record GetEnrollmentByIdQuery(int EnrollmentID) : IRequest<EnrollmentEntity>;
 
-    public class GetEnrollmentByIdQueryHandler(IEnrollmentRepository enrollmentRepository) : IRequestHandler<GetEnrollmentByIdQuery, EnrollmentEntity>
+    public class GetEnrollmentByIdQueryHandler : IRequestHandler<GetEnrollmentByIdQuery, EnrollmentEntity>
     {
+        private readonly IEnrollmentRepository _enrollmentRepository;
+        public GetEnrollmentByIdQueryHandler(IEnrollmentRepository enrollmentRepository)
+        {
+            _enrollmentRepository = enrollmentRepository;
+        }
         public async Task<EnrollmentEntity> Handle(GetEnrollmentByIdQuery request, CancellationToken cancellationToken)
         {
-            return await enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
+            return await _enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
         }
     }
 }

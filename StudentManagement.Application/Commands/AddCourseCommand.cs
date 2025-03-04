@@ -6,11 +6,16 @@ using StudentManagement.Domain.Interfaces;
 namespace StudentManagement.Application.Commands
 {
     public record AddCourseCommand(CourseEntity Course) : IRequest<CourseReadDTO>;
-    public class AddCourseCommandHandler(ICourseRepository courseRepository) : IRequestHandler<AddCourseCommand, CourseReadDTO>
+    public class AddCourseCommandHandler : IRequestHandler<AddCourseCommand, CourseReadDTO>
     {
+        private readonly ICourseRepository _courseRepository;
+        public AddCourseCommandHandler(ICourseRepository courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
         public async Task<CourseReadDTO> Handle(AddCourseCommand request, CancellationToken cancellationToken)
         {
-            var courseToRead = await courseRepository.AddCourseAsync(request.Course);
+            var courseToRead = await _courseRepository.AddCourseAsync(request.Course);
             return new CourseReadDTO
             {
                 CourseID = courseToRead.CourseID,

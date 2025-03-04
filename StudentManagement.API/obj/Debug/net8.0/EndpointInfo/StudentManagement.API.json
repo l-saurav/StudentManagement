@@ -5,69 +5,10 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Additional/students-with-courses": {
+    "/api/Additional/Get": {
       "get": {
         "tags": [
           "Additional"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Additional/students-without-enrollment": {
-      "get": {
-        "tags": [
-          "Additional"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Additional/courses-without-enrollment": {
-      "get": {
-        "tags": [
-          "Additional"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Additional/students-with-failed-courses": {
-      "get": {
-        "tags": [
-          "Additional"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Additional/calculate-gpa/{studentId}": {
-      "get": {
-        "tags": [
-          "Additional"
-        ],
-        "parameters": [
-          {
-            "name": "studentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {

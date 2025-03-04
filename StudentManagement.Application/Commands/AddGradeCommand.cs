@@ -7,11 +7,16 @@ namespace StudentManagement.Application.Commands
 {
     public record AddGradeCommand(GradeEntity gradeEntity) : IRequest<GradeReadDTO>;
 
-    public class AddGradeCommandHandler(IGradeRepository gradeRepository): IRequestHandler<AddGradeCommand, GradeReadDTO>
+    public class AddGradeCommandHandler: IRequestHandler<AddGradeCommand, GradeReadDTO>
     {
+        private readonly IGradeRepository _gradeRepository;
+        public AddGradeCommandHandler(IGradeRepository gradeRepository)
+        {
+            _gradeRepository = gradeRepository;
+        }
         public async Task<GradeReadDTO> Handle(AddGradeCommand request, CancellationToken cancellationToken)
         {
-            var gradeToAdd = await gradeRepository.AddGradeAsync(request.gradeEntity);
+            var gradeToAdd = await _gradeRepository.AddGradeAsync(request.gradeEntity);
             return new GradeReadDTO
             {
                 GradeID = gradeToAdd.GradeID,

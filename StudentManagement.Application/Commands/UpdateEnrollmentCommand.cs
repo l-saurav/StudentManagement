@@ -7,16 +7,21 @@ namespace StudentManagement.Application.Commands
 {
     public record UpdateEnrollmentCommand(int EnrollmentID, EnrollmentEntity enrollment) : IRequest<EnrollmentReadDTO>;
 
-    public class UpdateEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository) : IRequestHandler<UpdateEnrollmentCommand, EnrollmentReadDTO>
+    public class UpdateEnrollmentCommandHandler : IRequestHandler<UpdateEnrollmentCommand, EnrollmentReadDTO>
     {
+        private readonly IEnrollmentRepository _enrollmentRepository;
+        public UpdateEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository)
+        {
+            _enrollmentRepository = enrollmentRepository;
+        }
         public async Task<EnrollmentReadDTO> Handle(UpdateEnrollmentCommand request, CancellationToken cancellationToken)
         {
-            var existingEnrollment = await enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
+            var existingEnrollment = await _enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
             if (existingEnrollment is null)
             {
                 return null;
             }
-            var enrollmentToUpdate = await enrollmentRepository.UpdateEnrollmentAsync(request.EnrollmentID, request.enrollment);
+            var enrollmentToUpdate = await _enrollmentRepository.UpdateEnrollmentAsync(request.EnrollmentID, request.enrollment);
             return new EnrollmentReadDTO
             {
                 EnrollmentID = enrollmentToUpdate.EnrollmentID,
