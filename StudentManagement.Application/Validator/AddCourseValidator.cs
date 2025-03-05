@@ -19,7 +19,6 @@ namespace StudentManagement.Application.Validator
                 .NotEmpty().WithMessage("Credit Hours is required")  // Ensure CreditHours is not empty
                 .GreaterThanOrEqualTo(1).WithMessage("Credit Hours must be at least 1") // Ensure CreditHours is >= 1
                 .LessThanOrEqualTo(5).WithMessage("Credit Hours must not exceed 5"); // Ensure CreditHours is <= 5
-
         }
     }
 }

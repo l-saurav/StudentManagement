@@ -5,40 +5,47 @@ using StudentManagement.Domain.Interfaces;
 
 namespace StudentManagement.Infrastructure.Repository
 {
-    public class StudentRepository (StudentManagementDBContext dbContext) : IStudentRepository
+    public class StudentRepository : IStudentRepository
     {
+        private readonly StudentManagementDBContext _dBContext;
+        public StudentRepository(StudentManagementDBContext dBContext)
+        {
+            _dBContext = dBContext;
+        }
+
         // For Fluent Validation
         public async Task<bool> isEmailUniqueAsync(string email)
         {
-            return await dbContext.Students.AnyAsync(x => x.Email != email);
+            return await _dBContext.Students.AnyAsync(x => x.Email != email);
         }
+        //
 
         public async Task<IEnumerable<StudentEntity>> GetStudents()
         {
-            return await dbContext.Students.ToListAsync();
+            return await _dBContext.Students.ToListAsync();
         }
 
         public async Task<StudentEntity> GetStudentByIdAsync(int StudentID)
         {
-            return await dbContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
+            return await _dBContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
         }
 
         public async Task<StudentEntity> AddStudentAsync(StudentEntity student)
         {
-            dbContext.Students.Add(student);
-            await dbContext.SaveChangesAsync();
+            _dBContext.Students.Add(student);
+            await _dBContext.SaveChangesAsync();
             return student;
         }
 
         public async Task<StudentEntity> UpdateStudentAsync(int StudentID, StudentEntity student)
         {
-            var studentToUpdate = await dbContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
+            var studentToUpdate = await _dBContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
             if(studentToUpdate is not null) {
                 studentToUpdate.FullName = student.FullName;
                 studentToUpdate.DateOfBirth = student.DateOfBirth;
                 studentToUpdate.Email = student.Email;
                 studentToUpdate.PhoneNumber = student.PhoneNumber;
-                await dbContext.SaveChangesAsync();
+                await _dBContext.SaveChangesAsync();
                 return studentToUpdate;
             }
             return student;
@@ -46,11 +53,11 @@ namespace StudentManagement.Infrastructure.Repository
 
         public async Task<bool> DeleteStudentAsync(int StudentID)
         {
-            var studentToDelete = await dbContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
+            var studentToDelete = await _dBContext.Students.FirstOrDefaultAsync(x => x.StudentID == StudentID);
             if (studentToDelete is not null)
             {
-                dbContext.Students.Remove(studentToDelete);
-                return await dbContext.SaveChangesAsync() > 0;
+                _dBContext.Students.Remove(studentToDelete);
+                return await _dBContext.SaveChangesAsync() > 0;
             }
             return false;
         }
