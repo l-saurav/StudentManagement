@@ -2,6 +2,7 @@
 using MediatR;
 using StudentManagement.Domain.Interfaces;
 using StudentManagement.Application.DTOs;
+using AutoMapper;
 
 namespace StudentManagement.Application.Commands
 {
@@ -10,22 +11,16 @@ namespace StudentManagement.Application.Commands
     public class AddStudentCommandHandler : IRequestHandler<AddStudentCommand, StudentReadDTO>
     {
         private readonly IStudentRepository _studentRepository;
-        public AddStudentCommandHandler(IStudentRepository studentRepository)
+        private readonly IMapper _mapper;
+        public AddStudentCommandHandler(IStudentRepository studentRepository, IMapper mapper)
         {
             _studentRepository = studentRepository;
+            _mapper = mapper;
         }
         public async Task<StudentReadDTO> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
             var studentToAdd = await _studentRepository.AddStudentAsync(request.Student);
-            return new StudentReadDTO
-            {
-                StudentID = studentToAdd.StudentID,
-                FullName = studentToAdd.FullName,
-                DateOfBirth = studentToAdd.DateOfBirth,
-                Email = studentToAdd.Email,
-                PhoneNumber = studentToAdd.PhoneNumber,
-                RegistrationDate = studentToAdd.RegistrationDate
-            };
+            return _mapper.Map<StudentReadDTO>(studentToAdd);
         }
     }
 }

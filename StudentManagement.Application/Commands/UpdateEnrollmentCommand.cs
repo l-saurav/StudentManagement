@@ -2,6 +2,7 @@
 using MediatR;
 using StudentManagement.Domain.Interfaces;
 using StudentManagement.Application.DTOs;
+using AutoMapper;
 
 namespace StudentManagement.Application.Commands
 {
@@ -10,9 +11,11 @@ namespace StudentManagement.Application.Commands
     public class UpdateEnrollmentCommandHandler : IRequestHandler<UpdateEnrollmentCommand, EnrollmentReadDTO>
     {
         private readonly IEnrollmentRepository _enrollmentRepository;
-        public UpdateEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository)
+        private readonly IMapper _mapper;
+        public UpdateEnrollmentCommandHandler(IEnrollmentRepository enrollmentRepository, IMapper mapper)
         {
             _enrollmentRepository = enrollmentRepository;
+            _mapper = mapper;
         }
         public async Task<EnrollmentReadDTO> Handle(UpdateEnrollmentCommand request, CancellationToken cancellationToken)
         {
@@ -22,13 +25,7 @@ namespace StudentManagement.Application.Commands
                 return null;
             }
             var enrollmentToUpdate = await _enrollmentRepository.UpdateEnrollmentAsync(request.EnrollmentID, request.enrollment);
-            return new EnrollmentReadDTO
-            {
-                EnrollmentID = enrollmentToUpdate.EnrollmentID,
-                StudentID = enrollmentToUpdate.StudentID,
-                CourseID = enrollmentToUpdate.CourseID,
-                EnrollmentDate = enrollmentToUpdate.EnrollmentDate
-            };
+            return _mapper.Map<EnrollmentReadDTO>(enrollmentToUpdate);
         }
     }
 }

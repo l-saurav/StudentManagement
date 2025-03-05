@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using StudentManagement.Application.DTOs;
 using StudentManagement.Domain.Entities;
 using StudentManagement.Domain.Interfaces;
@@ -9,20 +10,16 @@ namespace StudentManagement.Application.Commands
     public class AddCourseCommandHandler : IRequestHandler<AddCourseCommand, CourseReadDTO>
     {
         private readonly ICourseRepository _courseRepository;
-        public AddCourseCommandHandler(ICourseRepository courseRepository)
+        private readonly IMapper _mapper;
+        public AddCourseCommandHandler(ICourseRepository courseRepository, IMapper mapper)
         {
             _courseRepository = courseRepository;
+            _mapper = mapper;
         }
         public async Task<CourseReadDTO> Handle(AddCourseCommand request, CancellationToken cancellationToken)
         {
             var courseToRead = await _courseRepository.AddCourseAsync(request.Course);
-            return new CourseReadDTO
-            {
-                CourseID = courseToRead.CourseID,
-                CourseName = courseToRead.CourseName,
-                CourseCode = courseToRead.CourseCode,
-                CreditHours = courseToRead.CreditHours
-            };
+            return _mapper.Map<CourseReadDTO>(courseToRead);
         }
     }
 }

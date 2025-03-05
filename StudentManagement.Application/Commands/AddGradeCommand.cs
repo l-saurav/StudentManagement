@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using StudentManagement.Application.DTOs;
 using StudentManagement.Domain.Entities;
 using StudentManagement.Domain.Interfaces;
@@ -10,20 +11,16 @@ namespace StudentManagement.Application.Commands
     public class AddGradeCommandHandler: IRequestHandler<AddGradeCommand, GradeReadDTO>
     {
         private readonly IGradeRepository _gradeRepository;
-        public AddGradeCommandHandler(IGradeRepository gradeRepository)
+        private readonly IMapper _mapper;
+        public AddGradeCommandHandler(IGradeRepository gradeRepository, IMapper mapper)
         {
             _gradeRepository = gradeRepository;
+            _mapper = mapper;
         }
         public async Task<GradeReadDTO> Handle(AddGradeCommand request, CancellationToken cancellationToken)
         {
             var gradeToAdd = await _gradeRepository.AddGradeAsync(request.gradeEntity);
-            return new GradeReadDTO
-            {
-                GradeID = gradeToAdd.GradeID,
-                StudentID = gradeToAdd.StudentID,
-                CourseID = gradeToAdd.CourseID,
-                Grade = gradeToAdd.Grade
-            };
+            return _mapper.Map<GradeReadDTO>(gradeToAdd);
         }
     }
 }
