@@ -13,7 +13,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<bool> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
-            return await _studentRepository.DeleteStudentAsync(request.StudentId);
+            return await _studentRepository.DeleteAsync(request.StudentId);
         }
     }
 }

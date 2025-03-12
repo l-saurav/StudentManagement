@@ -8,9 +8,9 @@ C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\D
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.AssemblyInfoInputs.cache
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.AssemblyInfo.cs
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.csproj.CoreCompileInputs.cache
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.sourcelink.json
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentM.589D761C.Up2Date
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\refint\StudentManagement.Application.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.pdb
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\ref\StudentManagement.Application.dll
-C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Application\obj\Debug\net8.0\StudentManagement.Application.sourcelink.json

@@ -14,7 +14,7 @@ namespace StudentManagement.Application.Queries
         }
         public async Task<IEnumerable<StudentEntity>> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
         {
-            return await _studentRepository.GetStudents();
+            return await _studentRepository.GetAllAsync();
         }
     }
 }

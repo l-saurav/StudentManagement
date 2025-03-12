@@ -2015,6 +2015,7 @@
           "AutoMapper": "14.0.0",
           "FluentValidation.DependencyInjectionExtensions": "11.11.0",
           "MediatR": "12.4.1",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
           "StudentManagement.Domain": "1.0.0"
         },
         "compile": {
@@ -2041,6 +2042,8 @@
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
+          "StudentManagement.Application": "1.0.0",
           "StudentManagement.Domain": "1.0.0"
         },
         "compile": {

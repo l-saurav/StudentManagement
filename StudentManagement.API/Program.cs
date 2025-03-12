@@ -3,6 +3,8 @@ using StudentManagement.Infrastructure;
 using StudentManagement.Presentation;
 using Serilog;
 using StudentManagement.Application.Profiles;
+using StudentManagement.Infrastructure.Services;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,7 @@ builder.Services.AddCors(options =>
 });
 //
 
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -34,6 +37,7 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddHostedService<DatabaseSynchronizationBackgroundService>();
 
 var app = builder.Build();
 
@@ -52,4 +56,4 @@ app.MapControllers();
 
 app.UseHttpsRedirection();
 
-app.Run("http://192.168.110.224:5066");
+app.Run();

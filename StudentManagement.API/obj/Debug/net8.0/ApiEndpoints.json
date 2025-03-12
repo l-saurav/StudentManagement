@@ -21,6 +21,16 @@
   },
   {
     "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
+    "Method": "TestSync",
+    "RelativePath": "api/Additional/test-sync",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.API.Controllers.AdditionalController",
     "Method": "GetAllUnenrolledCourse",
     "RelativePath": "api/Additional/UnenrolledCourse",
     "HttpMethod": "GET",

@@ -161,6 +161,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.4.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             }
           },
           "imports": [
@@ -278,6 +282,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\Acer\\source\\repos\\StudentManagement\\StudentManagement.Application\\StudentManagement.Application.csproj": {
+                "projectPath": "C:\\Users\\Acer\\source\\repos\\StudentManagement\\StudentManagement.Application\\StudentManagement.Application.csproj"
+              },
               "C:\\Users\\Acer\\source\\repos\\StudentManagement\\StudentManagement.Domain\\StudentManagement.Domain.csproj": {
                 "projectPath": "C:\\Users\\Acer\\source\\repos\\StudentManagement\\StudentManagement.Domain\\StudentManagement.Domain.csproj"
               }
@@ -317,6 +324,10 @@
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[9.0.2, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [

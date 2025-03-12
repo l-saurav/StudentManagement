@@ -53,6 +53,18 @@
         }
       }
     },
+    "/api/Additional/test-sync": {
+      "get": {
+        "tags": [
+          "Additional"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Courses": {
       "post": {
         "tags": [

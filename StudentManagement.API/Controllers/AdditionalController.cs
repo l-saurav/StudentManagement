@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentManagement.Domain.Interfaces;
 using StudentManagement.Infrastructure.Persistence;
 
 namespace StudentManagement.API.Controllers
@@ -81,6 +82,14 @@ namespace StudentManagement.API.Controllers
                                          s.FullName
                                      }).Distinct();
             return Ok(await failedStudentQuery.ToListAsync());
+        }
+
+        [HttpGet("test-sync")]
+        public async Task<IActionResult> TestSync()
+        {
+      
+            Console.WriteLine("Inside controller");
+            return Ok("Synchronization Complete");
         }
     }
 }

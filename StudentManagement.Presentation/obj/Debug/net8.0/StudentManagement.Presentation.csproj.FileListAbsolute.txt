@@ -6,6 +6,7 @@ C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.AssemblyInfoInputs.cache
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.AssemblyInfo.cs
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.csproj.CoreCompileInputs.cache
+C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.sourcelink.json
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\refint\StudentManagement.Presentation.dll
 C:\Users\Acer\source\repos\StudentManagement\StudentManagement.Presentation\obj\Debug\net8.0\StudentManagement.Presentation.pdb

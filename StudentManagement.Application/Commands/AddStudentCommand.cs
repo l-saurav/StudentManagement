@@ -19,7 +19,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<StudentReadDTO> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
-            var studentToAdd = await _studentRepository.AddStudentAsync(request.Student);
+            var studentToAdd = await _studentRepository.AddAsync(request.Student);
             return _mapper.Map<StudentReadDTO>(studentToAdd);
         }
     }

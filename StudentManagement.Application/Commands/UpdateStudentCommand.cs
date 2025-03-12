@@ -18,12 +18,12 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<StudentReadDTO> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            var existingStudent = await _studentRepository.GetStudentByIdAsync(request.StudentID);
+            var existingStudent = await _studentRepository.GetByIdAsync(request.StudentID);
             if(existingStudent is null)
             {
                 return null;
             }
-            var updatedStudent = await _studentRepository.UpdateStudentAsync(request.StudentID, request.student);
+            var updatedStudent = await _studentRepository.UpdateAsync(request.StudentID, request.student);
             return _mapper.Map<StudentReadDTO>(updatedStudent);
         }
     }
