@@ -3,5 +3,6 @@
     public interface ISynchronizationService
     {
         Task SynchronizeStudentsAsync();
+        Task SynchronizeCoursesAsync();
     }
 }

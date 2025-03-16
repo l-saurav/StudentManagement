@@ -27,6 +27,7 @@ namespace StudentManagement.Infrastructure.Services
                         var syncService = scope.ServiceProvider.GetRequiredService<ISynchronizationService>(); // Resolve Scoped service
                         Console.WriteLine("Scoped changed Successfully");
                         await syncService.SynchronizeStudentsAsync();
+                        await syncService.SynchronizeCoursesAsync();
                         Console.WriteLine("Syncronized Service called sucessfully without error");
                     }
                 }

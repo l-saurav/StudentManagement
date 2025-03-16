@@ -8,11 +8,16 @@ namespace StudentManagement.Application.Services
 
         private readonly IStudentRepository _primaryStudentRepo;
         private readonly IStudentRepositoryBackup _backupStudentRepo;
+        private readonly ICourseRepository _primaryCourseRepo;
+        private readonly ICourseRepositoryBackup _backupCourseRepo;
 
-        public SynchronizationServices(IStudentRepository primaryStudentRepo, IStudentRepositoryBackup backupStudentRepo)
+        public SynchronizationServices(IStudentRepository primaryStudentRepo, IStudentRepositoryBackup backupStudentRepo,
+            ICourseRepository primaryCourseRepo, ICourseRepositoryBackup backupCourseRepo)
         {
             _primaryStudentRepo = primaryStudentRepo;
             _backupStudentRepo = backupStudentRepo;
+            _primaryCourseRepo = primaryCourseRepo;
+            _backupCourseRepo = backupCourseRepo;
         }
 
         public async Task SynchronizeStudentsAsync()
@@ -72,7 +77,60 @@ namespace StudentManagement.Application.Services
                 Console.WriteLine($"Deleting student {student.StudentID} from backup database.");
                 await _backupStudentRepo.DeleteAsync(student.StudentID);
             }
-            Console.WriteLine("Synchronization completed.");
+            Console.WriteLine("Synchronization on Student table completed.");
+        }
+
+        public async Task SynchronizeCoursesAsync()
+        {
+            //Fetch Courses from Primary and Backup Database
+            var primaryCourse = await _primaryCourseRepo.GetAllAsync();
+            Console.WriteLine($"There are {primaryCourse.Count()} Courses in primary database");
+            var backupCourse = await _backupCourseRepo.GetAllAsync();
+            Console.WriteLine($"There are {backupCourse.Count()} Courses in backup database");
+
+            //Converting Backup Database to Dictionary for quicker lookup
+            var backupCourseDict = backupCourse.ToDictionary(c => c.CourseID);
+
+            foreach (var course in primaryCourse)
+            {
+                if(!backupCourseDict.TryGetValue(course.CourseID, out var existingCourse))
+                {
+                    //Adding New course to the backup database if it does not exist in the primary database
+                    var newCourse = new CourseEntity
+                    {
+                        CourseName = course.CourseName,
+                        CourseCode = course.CourseCode,
+                        CreditHours = course.CreditHours
+                    };
+                    Console.WriteLine($"Inserting Course {course.CourseID} into the backup database");
+                    await _backupCourseRepo.AddAsync(newCourse);
+                }
+                else
+                {
+                    //Check if any field have changed
+                    if(existingCourse.CourseName != course.CourseName ||
+                        existingCourse.CourseCode != course.CourseCode || 
+                        existingCourse.CreditHours != course.CreditHours)
+                    {
+                        //Update the Course record if something have changed
+                        existingCourse.CourseName = course.CourseName;
+                        existingCourse.CourseCode = course.CourseCode;
+                        existingCourse.CreditHours = course.CreditHours;
+                        Console.WriteLine($"Updating the record of Course {course.CourseID} ");
+                        await _backupCourseRepo.UpdateAsync(existingCourse.CourseID, existingCourse);
+                    }
+                }
+            }
+
+            //Deleting Course if not present in primary database
+            var primaryCourseIDs = primaryCourse.Select(c => c.CourseID).ToHashSet();
+            var courseToDelete = backupCourse.Where(c => !primaryCourseIDs.Contains(c.CourseID)).ToList();
+            foreach (var course in courseToDelete)
+            {
+                Console.WriteLine($"Deleting Course {course.CourseID} from the backup Database");
+                await _backupCourseRepo.DeleteAsync(course.CourseID);
+            }
+            Console.WriteLine("Synchronization on Course table completed!");
         }
     }
 }

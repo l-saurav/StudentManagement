@@ -18,7 +18,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<CourseReadDTO> Handle(AddCourseCommand request, CancellationToken cancellationToken)
         {
-            var courseToRead = await _courseRepository.AddCourseAsync(request.Course);
+            var courseToRead = await _courseRepository.AddAsync(request.Course);
             return _mapper.Map<CourseReadDTO>(courseToRead);
         }
     }

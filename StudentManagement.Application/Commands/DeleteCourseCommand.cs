@@ -14,7 +14,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<bool> Handle(DeleteCourseCommand request, CancellationToken cancellationToken)
         {
-            return await _courseRepository.DeleteCourseAsync(request.CourseId);
+            return await _courseRepository.DeleteAsync(request.CourseId);
         }
     }
 }

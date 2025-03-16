@@ -5,7 +5,6 @@ using StudentManagement.Domain.Interfaces;
 using StudentManagement.Infrastructure.Repository;
 using Microsoft.Extensions.Configuration;
 using StudentManagement.Application.Services;
-using StudentManagement.Domain.Entities;
 
 namespace StudentManagement.Infrastructure;
 
@@ -31,6 +30,7 @@ public static class DependencyInjection
         services.AddScoped<ISynchronizationService, SynchronizationServices>();
 
         services.AddScoped<IStudentRepositoryBackup, StudentRepositoryBackup>();
+        services.AddScoped<ICourseRepositoryBackup, CourseRepositoryBackup>();
 
         return services;
     }
