@@ -135,7 +135,7 @@ namespace StudentManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("RegistrationDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 

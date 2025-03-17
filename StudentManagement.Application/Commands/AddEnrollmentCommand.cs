@@ -19,7 +19,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<EnrollmentReadDTO> Handle(AddEnrollmentCommand request, CancellationToken cancellationToken)
         {
-            var enrollmentToAdd = await _enrollmentRepository.AddEnrollmentAsync(request.enrollmentEntity);
+            var enrollmentToAdd = await _enrollmentRepository.AddAsync(request.enrollmentEntity);
             return _mapper.Map<EnrollmentReadDTO>(enrollmentToAdd);
         }
     }

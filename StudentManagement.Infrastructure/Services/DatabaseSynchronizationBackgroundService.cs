@@ -28,11 +28,21 @@ namespace StudentManagement.Infrastructure.Services
                         Console.WriteLine("Scoped changed Successfully");
                         await syncService.SynchronizeStudentsAsync();
                         await syncService.SynchronizeCoursesAsync();
+                        await syncService.SynchronizeEnrollmentAsync();
+                        await syncService.SynchronizeGradeAsync();
                         Console.WriteLine("Syncronized Service called sucessfully without error");
                     }
                 }
                 catch(Exception e)
                 {
+                    if (e.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
+                        if (e.InnerException.InnerException != null)
+                        {
+                            Console.WriteLine($"Inner Inner Exception: {e.InnerException.InnerException.Message}");
+                        }
+                    }
                     Console.WriteLine($"Periodic Synchronization Failed: {e.Message}");
                 }
                 await Task.Delay(_syncInterval, stoppingToken);

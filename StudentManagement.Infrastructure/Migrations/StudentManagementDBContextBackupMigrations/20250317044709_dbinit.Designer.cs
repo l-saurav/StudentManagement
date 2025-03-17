@@ -12,7 +12,7 @@ using StudentManagement.Infrastructure.Persistence;
 namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContextBackupMigrations
 {
     [DbContext(typeof(StudentManagementDBContextBackup))]
-    [Migration("20250309083232_dbinit")]
+    [Migration("20250317044709_dbinit")]
     partial class dbinit
     {
         /// <inheritdoc />
@@ -28,10 +28,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
             modelBuilder.Entity("StudentManagement.Domain.Entities.CourseEntity", b =>
                 {
                     b.Property<int>("CourseID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
 
                     b.Property<string>("CourseCode")
                         .IsRequired()
@@ -48,27 +45,19 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
 
                     b.HasKey("CourseID");
 
-                    b.HasIndex("CourseCode")
-                        .IsUnique();
-
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("StudentManagement.Domain.Entities.EnrollmentEntity", b =>
                 {
                     b.Property<int>("EnrollmentID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"));
 
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EnrollmentDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("StudentID")
                         .HasColumnType("int");
@@ -77,8 +66,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
 
                     b.HasIndex("CourseID");
 
-                    b.HasIndex("StudentID", "CourseID")
-                        .IsUnique();
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Enrollments");
                 });
@@ -86,10 +74,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
             modelBuilder.Entity("StudentManagement.Domain.Entities.GradeEntity", b =>
                 {
                     b.Property<int>("GradeID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"));
 
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
@@ -105,8 +90,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
 
                     b.HasIndex("CourseID");
 
-                    b.HasIndex("StudentID", "CourseID")
-                        .IsUnique();
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Grades");
                 });
@@ -114,13 +98,10 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
             modelBuilder.Entity("StudentManagement.Domain.Entities.StudentEntity", b =>
                 {
                     b.Property<int>("StudentID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"));
-
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -138,14 +119,9 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("RegistrationDate")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("StudentID");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("Students");
                 });

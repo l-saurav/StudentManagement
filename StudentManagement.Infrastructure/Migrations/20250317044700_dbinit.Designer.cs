@@ -12,7 +12,7 @@ using StudentManagement.Infrastructure.Persistence;
 namespace StudentManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(StudentManagementDBContext))]
-    [Migration("20250309083142_dbinit")]
+    [Migration("20250317044700_dbinit")]
     partial class dbinit
     {
         /// <inheritdoc />
@@ -138,7 +138,7 @@ namespace StudentManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("RegistrationDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 

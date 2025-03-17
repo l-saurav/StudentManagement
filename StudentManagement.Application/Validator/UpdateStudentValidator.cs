@@ -39,7 +39,7 @@ namespace StudentManagement.Application.Validator
 
             RuleFor(s => s.student.RegistrationDate)
                 .NotEmpty().WithMessage("Registration Date is required")
-                .LessThan(DateTime.Now).WithMessage("Registration Date must be less than current date");
+                .LessThan(DateTime.Now.AddMinutes(1)).WithMessage("Registration Date must be less than current date");
         }
     }
 }

@@ -5,38 +5,46 @@ namespace StudentManagement.Infrastructure.Persistence
 {
     public class StudentManagementDBContextBackup : DbContext
     {
-        public StudentManagementDBContextBackup(DbContextOptions options) : base(options)
+        public StudentManagementDBContextBackup(DbContextOptions<StudentManagementDBContextBackup> options) : base(options)
         {
-
         }
+
         public DbSet<StudentEntity> Students { get; set; }
         public DbSet<CourseEntity> Courses { get; set; }
         public DbSet<EnrollmentEntity> Enrollments { get; set; }
         public DbSet<GradeEntity> Grades { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Student entity
+            // **Student Entity**
             modelBuilder.Entity<StudentEntity>()
-                .HasIndex(s => s.Email)
-                .IsUnique();
+                .Property(s => s.StudentID)
+                .ValueGeneratedNever(); // Prevent Identity Auto-Increment
 
             modelBuilder.Entity<StudentEntity>()
                 .Property(s => s.RegistrationDate)
-                .HasDefaultValueSql("GETUTCDATE()");
+                .IsRequired(); // Ensure it's explicitly provided
 
-            modelBuilder.Entity<StudentEntity>()
-                .Property(s => s.DateOfBirth)
-                .HasColumnType("date");
-
-            // Course entity
+            // **Course Entity**
             modelBuilder.Entity<CourseEntity>()
-                .HasIndex(c => c.CourseCode).IsUnique();
+                .Property(c => c.CourseID)
+                .ValueGeneratedNever(); // Prevent Identity Auto-Increment
 
-            // Enrollment entity
+            // **Enrollment Entity**
             modelBuilder.Entity<EnrollmentEntity>()
-                .HasIndex(e => new { e.StudentID, e.CourseID })
-                .IsUnique();
+                .Property(e => e.EnrollmentID)
+                .ValueGeneratedNever(); // Prevent Identity Auto-Increment
 
+            modelBuilder.Entity<EnrollmentEntity>()
+                .Property(e => e.EnrollmentDate)
+                .IsRequired(); // Ensure it's explicitly provided
+
+            // **Grade Entity**
+            modelBuilder.Entity<GradeEntity>()
+                .Property(g => g.GradeID)
+                .ValueGeneratedNever(); // Prevent Identity Auto-Increment
+
+            // **Foreign Key Relationships Remain Unchanged**
             modelBuilder.Entity<EnrollmentEntity>()
                 .HasOne(e => e.Student)
                 .WithMany(s => s.Enrollments)
@@ -49,24 +57,15 @@ namespace StudentManagement.Infrastructure.Persistence
                 .HasForeignKey(e => e.CourseID)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<EnrollmentEntity>()
-                .Property(e => e.EnrollmentDate)
-                .HasDefaultValueSql("GETUTCDATE()");
-
-            //Grade entity
             modelBuilder.Entity<GradeEntity>()
-                .HasIndex(g => new { g.StudentID, g.CourseID })
-                .IsUnique();
-
-            modelBuilder.Entity<GradeEntity>()
-                .HasOne(g => g.Student) //One grade belongs to one student
-                .WithMany(s => s.Grades) //One student can have multiple grades
+                .HasOne(g => g.Student)
+                .WithMany(s => s.Grades)
                 .HasForeignKey(g => g.StudentID)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<GradeEntity>()
-                .HasOne(g => g.Course) //One grade belongs to one course
-                .WithMany(c => c.Grades) //One course can have multiple grades
+                .HasOne(g => g.Course)
+                .WithMany(c => c.Grades)
                 .HasForeignKey(g => g.CourseID)
                 .OnDelete(DeleteBehavior.Cascade);
         }

@@ -19,7 +19,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<GradeReadDTO> Handle(AddGradeCommand request, CancellationToken cancellationToken)
         {
-            var gradeToAdd = await _gradeRepository.AddGradeAsync(request.gradeEntity);
+            var gradeToAdd = await _gradeRepository.AddAsync(request.gradeEntity);
             return _mapper.Map<GradeReadDTO>(gradeToAdd);
         }
     }

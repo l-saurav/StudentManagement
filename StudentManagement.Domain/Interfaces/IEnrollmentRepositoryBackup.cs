@@ -2,8 +2,7 @@
 
 namespace StudentManagement.Domain.Interfaces
 {
-    public interface IEnrollmentRepository : IRepository<EnrollmentEntity>
+    public interface IEnrollmentRepositoryBackup : IRepository<EnrollmentEntity>
     {
-
     }
 }

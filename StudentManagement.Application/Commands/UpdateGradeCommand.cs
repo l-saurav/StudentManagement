@@ -18,12 +18,12 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<GradeReadDTO> Handle(UpdateGradeCommand request, CancellationToken cancellationToken)
         {
-            var existingGrade = await _gradeRepository.GetGradeByIdAsync(request.GradeID);
+            var existingGrade = await _gradeRepository.GetByIdAsync(request.GradeID);
             if (existingGrade is null)
             {
                 return null;
             }
-            var gradeToUpdate = await _gradeRepository.UpdateGradeAsync(request.GradeID, request.Grade);
+            var gradeToUpdate = await _gradeRepository.UpdateAsync(request.GradeID, request.Grade);
             return _mapper.Map<GradeReadDTO>(gradeToUpdate);
         }
     }

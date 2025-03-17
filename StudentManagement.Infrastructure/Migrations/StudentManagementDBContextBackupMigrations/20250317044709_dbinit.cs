@@ -15,8 +15,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseID = table.Column<int>(type: "int", nullable: false),
                     CourseName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CourseCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CreditHours = table.Column<int>(type: "int", nullable: false)
@@ -30,13 +29,12 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 name: "Students",
                 columns: table => new
                 {
-                    StudentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,11 +45,10 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false),
                     StudentID = table.Column<int>(type: "int", nullable: false),
                     CourseID = table.Column<int>(type: "int", nullable: false),
-                    EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
+                    EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,8 +71,7 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 name: "Grades",
                 columns: table => new
                 {
-                    GradeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GradeID = table.Column<int>(type: "int", nullable: false),
                     StudentID = table.Column<int>(type: "int", nullable: false),
                     CourseID = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<string>(type: "nvarchar(1)", nullable: false)
@@ -98,21 +94,14 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_CourseCode",
-                table: "Courses",
-                column: "CourseCode",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_CourseID",
                 table: "Enrollments",
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentID_CourseID",
+                name: "IX_Enrollments_StudentID",
                 table: "Enrollments",
-                columns: new[] { "StudentID", "CourseID" },
-                unique: true);
+                column: "StudentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Grades_CourseID",
@@ -120,16 +109,9 @@ namespace StudentManagement.Infrastructure.Migrations.StudentManagementDBContext
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Grades_StudentID_CourseID",
+                name: "IX_Grades_StudentID",
                 table: "Grades",
-                columns: new[] { "StudentID", "CourseID" },
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_Email",
-                table: "Students",
-                column: "Email",
-                unique: true);
+                column: "StudentID");
         }
 
         /// <inheritdoc />

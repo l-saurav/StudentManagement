@@ -19,12 +19,12 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<EnrollmentReadDTO> Handle(UpdateEnrollmentCommand request, CancellationToken cancellationToken)
         {
-            var existingEnrollment = await _enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
+            var existingEnrollment = await _enrollmentRepository.GetByIdAsync(request.EnrollmentID);
             if (existingEnrollment is null)
             {
                 return null;
             }
-            var enrollmentToUpdate = await _enrollmentRepository.UpdateEnrollmentAsync(request.EnrollmentID, request.enrollment);
+            var enrollmentToUpdate = await _enrollmentRepository.UpdateAsync(request.EnrollmentID, request.enrollment);
             return _mapper.Map<EnrollmentReadDTO>(enrollmentToUpdate);
         }
     }

@@ -13,7 +13,7 @@ namespace StudentManagement.Application.Commands
         }
         public async Task<bool> Handle(DeleteGradeCommand request, CancellationToken cancellationToken)
         {
-            return await _gradeRepository.DeleteGradeAsync(request.GradeID);
+            return await _gradeRepository.DeleteAsync(request.GradeID);
         }
     }
 }

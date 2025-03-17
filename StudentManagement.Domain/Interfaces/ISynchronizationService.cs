@@ -4,5 +4,7 @@
     {
         Task SynchronizeStudentsAsync();
         Task SynchronizeCoursesAsync();
+        Task SynchronizeEnrollmentAsync();
+        Task SynchronizeGradeAsync();
     }
 }

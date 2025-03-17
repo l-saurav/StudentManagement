@@ -19,7 +19,7 @@ namespace StudentManagement.Application.Queries
         }
         public async Task<GradeEntity> Handle(GetGradeByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _gradeRepository.GetGradeByIdAsync(request.GradeID);
+            return await _gradeRepository.GetByIdAsync(request.GradeID);
         }
     }
 }

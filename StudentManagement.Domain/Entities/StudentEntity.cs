@@ -25,9 +25,8 @@ namespace StudentManagement.Domain.Entities
         [MaxLength(10, ErrorMessage ="Phone Number cannot be more than 10 digit")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage ="Registration Date cannot be left empty!")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
+        [Required(ErrorMessage = "Registration Date cannot be left empty!")]
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
         // Navigation property
         public ICollection<EnrollmentEntity> Enrollments { get; set; }

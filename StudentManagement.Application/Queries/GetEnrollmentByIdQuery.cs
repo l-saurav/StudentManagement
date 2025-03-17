@@ -15,7 +15,7 @@ namespace StudentManagement.Application.Queries
         }
         public async Task<EnrollmentEntity> Handle(GetEnrollmentByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _enrollmentRepository.GetEnrollmentByIdAsync(request.EnrollmentID);
+            return await _enrollmentRepository.GetByIdAsync(request.EnrollmentID);
         }
     }
 }
